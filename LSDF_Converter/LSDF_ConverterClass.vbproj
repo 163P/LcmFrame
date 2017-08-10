@@ -4,34 +4,30 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79AC38A4-A505-41FE-AA38-A1B8159CF985}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>LSDFConverter.MainMod</StartupObject>
-    <RootNamespace>LSDFConverter</RootNamespace>
-    <AssemblyName>LSDFConverter</AssemblyName>
+    <ProjectGuid>{CFB54739-F2D9-4B48-8EF7-D7FA4A03B9CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LSDF_Converter</RootNamespace>
+    <AssemblyName>LSDF_Converter</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>LSDFConverter.xml</DocumentationFile>
+    <DocumentationFile>LSDF_Converter.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>LSDFConverter.xml</DocumentationFile>
+    <DocumentationFile>LSDF_Converter.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -49,7 +45,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,7 +63,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainMod.vb" />
+    <Compile Include="ExtensionModule.vb" />
+    <Compile Include="ToLSDF.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -84,6 +80,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ToUST.vb" />
+    <Compile Include="UstSystem.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -103,12 +101,15 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LSDF_Converter\LSDF_ConverterClass.vbproj">
-      <Project>{cfb54739-f2d9-4b48-8ef7-d7fa4a03b9cd}</Project>
-      <Name>LSDF_ConverterClass</Name>
+    <ProjectReference Include="..\XMLClass\XMLClass.csproj">
+      <Project>{3c1bf366-885b-4fad-9ccb-409c5b96fd91}</Project>
+      <Name>XMLClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="F:\Source\Workspaces\Lcm\LCM\INIClassLibrary\INIClassLibrary.vbproj">
+      <Project>{5ae251e6-71d9-44b3-82dc-697d2185303f}</Project>
+      <Name>INIClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
