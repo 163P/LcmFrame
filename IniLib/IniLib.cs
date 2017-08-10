@@ -15,17 +15,15 @@ namespace IniLib
 
     public class ReadParser
     {
-        public static async Task<IDictionary<string, IDictionary<string, string>>> ReadFileAsync(string file)
+        public static async Task<IniFile> ReadFileAsync(string file)
         {
             return await ReadFileAsync(file, Encoding.Default);
         }
 
-        public static async Task<IDictionary<string, IDictionary<string, string>>> ReadFileAsync(string file,
-            Encoding encoding)
+        public static async Task<IniFile> ReadFileAsync(string file, Encoding encoding)
         {
-            IDictionary<string, IDictionary<string, string>> result =
-                new Dictionary<string, IDictionary<string, string>>();
-            IDictionary<string, string> section = null;
+            var result = new IniFile();
+            Section section = null;
 
             using (var sr = new StreamReader(file, encoding))
             {
@@ -38,8 +36,7 @@ namespace IniLib
                             continue;
                         if (line[0] == '[')
                         {
-                            section = new Dictionary<string, string>();
-                            result.Add(line.Substring(1, line.Length - 2), section);
+                            result.Add(line.Substring(1, line.Length - 2), out section);
                             continue;
                         }
                         AddToSection(ref section, line);
@@ -50,7 +47,7 @@ namespace IniLib
             return result;
         }
 
-        internal static void AddToSection(ref IDictionary<string, string> section, string line)
+        internal static void AddToSection(ref Section section, string line)
         {
             var pos = line.IndexOf('=');
             section.Add(line.Substring(0, pos), line.Substring(pos + 1, line.Length - pos - 1));
@@ -59,8 +56,7 @@ namespace IniLib
 
     public class WriteParser
     {
-        public static async Task WriteFileAsync(IDictionary<string, IDictionary<string, string>> data, string file,
-            bool overwrite = false)
+        public static async Task WriteFileAsync(IniFile data, string file, bool overwrite = false)
         {
             if (File.Exists(file))
                 if (overwrite)
@@ -74,8 +70,8 @@ namespace IniLib
                 {
                     foreach (var section in data)
                     {
-                        await sw.WriteLineAsync($"[{section.Key}]");
-                        foreach (var kv in section.Value)
+                        await sw.WriteLineAsync($"[{section.Name}]");
+                        foreach (var kv in section)
                         {
                             await sw.WriteLineAsync($"{kv.Key}={kv.Value}");
                         }
