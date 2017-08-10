@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LSDFConverter", "LSDFConverter\LSDFConverter.vbproj", "{79AC38A4-A505-41FE-AA38-A1B8159CF985}"
 EndProject
@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLClass", "XMLClass\XMLCla
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LSDF_ConverterClass", "LSDF_Converter\LSDF_ConverterClass.vbproj", "{CFB54739-F2D9-4B48-8EF7-D7FA4A03B9CD}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "INIClassLibrary", "F:\Source\Workspaces\Lcm\LCM\INIClassLibrary\INIClassLibrary.vbproj", "{5AE251E6-71D9-44B3-82DC-697D2185303F}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LSDFrame", "LSDFrame\LSDFrame.vbproj", "{A6393729-1E48-4987-8261-52EC1C98F29D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IniLib", "IniLib\IniLib.csproj", "{EC6CA349-95FE-4C97-8F95-B54DA61D2AEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{CFB54739-F2D9-4B48-8EF7-D7FA4A03B9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB54739-F2D9-4B48-8EF7-D7FA4A03B9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB54739-F2D9-4B48-8EF7-D7FA4A03B9CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AE251E6-71D9-44B3-82DC-697D2185303F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AE251E6-71D9-44B3-82DC-697D2185303F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AE251E6-71D9-44B3-82DC-697D2185303F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AE251E6-71D9-44B3-82DC-697D2185303F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6393729-1E48-4987-8261-52EC1C98F29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6393729-1E48-4987-8261-52EC1C98F29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6393729-1E48-4987-8261-52EC1C98F29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6393729-1E48-4987-8261-52EC1C98F29D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC6CA349-95FE-4C97-8F95-B54DA61D2AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC6CA349-95FE-4C97-8F95-B54DA61D2AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC6CA349-95FE-4C97-8F95-B54DA61D2AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC6CA349-95FE-4C97-8F95-B54DA61D2AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

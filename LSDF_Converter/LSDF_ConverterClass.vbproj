@@ -103,13 +103,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IniLib\IniLib.csproj">
+      <Project>{ec6ca349-95fe-4c97-8f95-b54da61d2aea}</Project>
+      <Name>IniLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XMLClass\XMLClass.csproj">
       <Project>{3c1bf366-885b-4fad-9ccb-409c5b96fd91}</Project>
       <Name>XMLClass</Name>
-    </ProjectReference>
-    <ProjectReference Include="F:\Source\Workspaces\Lcm\LCM\INIClassLibrary\INIClassLibrary.vbproj">
-      <Project>{5ae251e6-71d9-44b3-82dc-697d2185303f}</Project>
-      <Name>INIClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
