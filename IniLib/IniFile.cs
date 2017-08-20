@@ -13,13 +13,21 @@ namespace IniLib
             _dict = new Dictionary<string, Section>();
         }
 
+        public int Count { get { return _dict.Count; } }
+
         public Section this[string key]
         {
-            get => _dict[key];
-            set => _dict[key] = value;
+            get { return _dict[key]; }
+            set { _dict[key] = value; }
         }
 
         public IEnumerator<Section> GetEnumerator() => _dict.Select(section => section.Value).GetEnumerator();
+
+        public void Add(string key)
+        {
+            if(!_dict.ContainsKey(key))
+            _dict.Add(key, new Section(key));
+        }
 
         public void Add(string key, out Section v)
         {
@@ -27,10 +35,10 @@ namespace IniLib
             _dict.Add(key, v);
         }
 
-        public void Add(string key, Section value)
-        {
-            _dict.Add(key, value);
-        }
+        //public void Add(string key, Section value)
+        //{
+        //    _dict.Add(key, value);
+        //}
     }
 
     public class Section
@@ -44,10 +52,17 @@ namespace IniLib
             _dict = new Dictionary<string, string>();
         }
 
+        public int Count { get { return _dict.Count; } }
+
         public string this[string key]
         {
-            get => _dict[key];
-            set => _dict[key] = value;
+            get
+            {
+                if (_dict.ContainsKey(key))
+                    return _dict[key];
+                return string.Empty;
+            }
+            set { _dict[key] = value; }
         }
 
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator() => _dict.GetEnumerator();

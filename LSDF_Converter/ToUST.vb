@@ -1,6 +1,7 @@
-﻿Imports INIClassLibrary.INIClass
+﻿Imports IniLib
 Public Class ToUST
     Dim k As Short
+    Dim Theini As New IniLib.IniFile
     ' 结构声明段
     ''' <summary>
     ''' UST文件整体结构
@@ -76,30 +77,41 @@ Public Class ToUST
         Loop
     End Function
 
-    Public Function GotoUst(filename As String, out As String) As Boolean
-        Try
+    Public Sub WriteINI(Section As String, Parameter As String, Value As String, ByRef ini As IniFile)
 
+        ini.Add(Section)
+        If Value = "" And Parameter = "" Then
+            Exit Sub
+        Else
+            ini(Section).Add(Parameter, Value)
+        End If
+    End Sub
+
+    Public Function GotoUst(filename As String, out As String) As Boolean
+
+
+        Dim UstINI As New IniFile
 
             Dim ust As USTFileSystem
             ust = ReadXml(filename)
-            WriteINI("#SETTING", "Tempo", ust.BPM, out)
-            WriteINI("#SETTING", "Tracks", "1", out)
+            WriteINI("#SETTING", "Tempo", ust.BPM, UstINI)
+            WriteINI("#SETTING", "Tracks", "1", UstINI)
             Dim i As Short = 0
             Do
-                WriteINI("#" & i.ToString("0000"), "Length", ust.Section(i).Length, out)
-                WriteINI("#" & i.ToString("0000"), "Lyric", ust.Section(i).Lyric, out)
-                WriteINI("#" & i.ToString("0000"), "NoteNum", ust.Section(i).NoteString, out)
-                WriteINI("#" & i.ToString("0000"), "Velocity", ust.Section(i).Velocity, out)
-                WriteINI("#" & i.ToString("0000"), "Flags", ust.Section(i).Flags, out)
-                WriteINI("#" & i.ToString("0000"), "PreUtterance", ust.Section(i).PreUtterance, out)
-                WriteINI("#" & i.ToString("0000"), "Overlap", ust.Section(i).Overlap, out)
-                WriteINI("#" & i.ToString("0000"), "Envelope", ust.Section(i).Envelope, out)
-                WriteINI("#" & i.ToString("0000"), "PBType", ust.Section(i).PBType, out)
-                WriteINI("#" & i.ToString("0000"), "PitchBend", ust.Section(i).PitchBend, out)
-                WriteINI("#" & i.ToString("0000"), "PBStart", ust.Section(i).PBStart, out)
-                WriteINI("#" & i.ToString("0000"), "VBR", ust.Section(i).VBR, out)
-                WriteINI("#" & i.ToString("0000"), "Intensity", ust.Section(i).Intensity, out)
-                WriteINI("#" & i.ToString("0000"), "Modulation", ust.Section(i).Modulation, out)
+                WriteINI("#" & i.ToString("0000"), "Length", ust.Section(i).Length, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Lyric", ust.Section(i).Lyric, UstINI)
+                WriteINI("#" & i.ToString("0000"), "NoteNum", ust.Section(i).NoteString, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Velocity", ust.Section(i).Velocity, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Flags", ust.Section(i).Flags, UstINI)
+                WriteINI("#" & i.ToString("0000"), "PreUtterance", ust.Section(i).PreUtterance, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Overlap", ust.Section(i).Overlap, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Envelope", ust.Section(i).Envelope, UstINI)
+                WriteINI("#" & i.ToString("0000"), "PBType", ust.Section(i).PBType, UstINI)
+                WriteINI("#" & i.ToString("0000"), "PitchBend", ust.Section(i).PitchBend, UstINI)
+                WriteINI("#" & i.ToString("0000"), "PBStart", ust.Section(i).PBStart, UstINI)
+                WriteINI("#" & i.ToString("0000"), "VBR", ust.Section(i).VBR, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Intensity", ust.Section(i).Intensity, UstINI)
+                WriteINI("#" & i.ToString("0000"), "Modulation", ust.Section(i).Modulation, UstINI)
                 i = i + 1
 
                 If i = k + 1 Then
@@ -107,10 +119,11 @@ Public Class ToUST
                 End If
 
             Loop
-            My.Computer.FileSystem.WriteAllText(out, vbCrLf & "[#TRACKEND]", True, System.Text.Encoding.Default)
+            WriteINI("[#TRACKEND]", "", "", UstINI)
+
+            Task.WaitAll(WriteParser.WriteFileAsync(UstINI, out, True))
+
             GotoUst = True
-        Catch ex As Exception
-            GotoUst = False
-        End Try
+
     End Function
 End Class

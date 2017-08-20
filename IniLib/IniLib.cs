@@ -30,6 +30,15 @@ namespace IniLib
                 await Task.Run(async () =>
                 {
                     string line;
+                    if((line=await sr.ReadLineAsync())== "[#VERSION]")
+                    {
+                        await sr.ReadLineAsync();
+                    }
+                    else
+                    {
+                        sr.DiscardBufferedData();
+                        sr.BaseStream.Seek(0, SeekOrigin.Begin);
+                    }
                     while ((line = await sr.ReadLineAsync()) != null)
                     {
                         if (line.IsEmptyOrWhiteSpace() || line[0] == ';')

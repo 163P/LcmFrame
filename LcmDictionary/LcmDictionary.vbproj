@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFB54739-F2D9-4B48-8EF7-D7FA4A03B9CD}</ProjectGuid>
+    <ProjectGuid>{E9D15BE8-5AF0-4FEC-8A8D-4F92941E97E8}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>LSDF_Converter</RootNamespace>
-    <AssemblyName>LSDF_Converter</AssemblyName>
+    <RootNamespace>LcmDictionary</RootNamespace>
+    <AssemblyName>LcmDictionary</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -18,7 +18,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>LSDF_Converter.xml</DocumentationFile>
+    <DocumentationFile>LcmDictionary.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -27,7 +27,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>LSDF_Converter.xml</DocumentationFile>
+    <DocumentationFile>LcmDictionary.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -63,8 +63,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionModule.vb" />
-    <Compile Include="ToLSDF.vb" />
+    <Compile Include="MainClass.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -80,8 +79,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ToUST.vb" />
-    <Compile Include="UstSystem.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -101,20 +98,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IniLib\IniLib.csproj">
-      <Project>{ec6ca349-95fe-4c97-8f95-b54da61d2aea}</Project>
-      <Name>IniLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LcmDictionary\LcmDictionary.vbproj">
-      <Project>{e9d15be8-5af0-4fec-8a8d-4f92941e97e8}</Project>
-      <Name>LcmDictionary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XMLClass\XMLClass.csproj">
-      <Project>{3c1bf366-885b-4fad-9ccb-409c5b96fd91}</Project>
-      <Name>XMLClass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
