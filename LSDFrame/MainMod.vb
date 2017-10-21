@@ -1,9 +1,14 @@
-﻿Module MainMod
+﻿Imports inlib
+Module MainMod
 
     Sub Main()
+
         Dim a As New IO.FileInfo(Replace(Command, """", ""))
-
-
+        Console.WriteLine("LCM Frame V1.0")
+        Console.WriteLine("##########################")
+        Console.WriteLine("监视中。请不要关闭此窗口。")
+        Console.WriteLine("##########################")
+        Console.WriteLine("LCM Project")
         If a.Extension = ".lsdf" Or a.Extension = ".LSDF" Then
             Dim w As New LSDF_Converter.ToUST
 
@@ -11,7 +16,9 @@
 
             Dim p As New Process
             Dim info As New ProcessStartInfo
-            info.FileName = "C:\Program Files (x86)\UTAU\utau.exe"
+            Dim ini = IniLib.ReadParser.ReadFileAsync(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase & "Setting.ini").Result
+
+            info.FileName = GetINI("UTAU", "UTAUPath", "", ini)
             info.Arguments = System.IO.Path.GetFullPath(a.FullName) & "_LCM.ust"
             p.StartInfo = info
             p.Start()
@@ -26,5 +33,12 @@
             FileIO.FileSystem.DeleteFile(System.IO.Path.GetFullPath(a.FullName) & "_LCM.ust")
         End If
     End Sub
+    Public Function GetINI(Section As String, Parameter As String, DefaultValue As String, ini As IniLib.IniFile)
 
+        Dim s = ini(Section)(Parameter)
+        If (String.IsNullOrEmpty(s)) Then
+            Return DefaultValue
+        End If
+        Return s
+    End Function
 End Module

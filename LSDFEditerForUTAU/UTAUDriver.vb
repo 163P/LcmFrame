@@ -3,6 +3,10 @@
         Dim Filename As String
         Dim Name As String
     End Structure
+    Structure MainArgs
+        Dim TempDir As String
+        Dim SingerDir As String
+    End Structure
     Structure WavTool
         Dim Filename As String
         Dim Name As String
@@ -30,6 +34,7 @@
         Dim p1 As Short '0
         Dim p2Overlap As Short
         Dim p3nextOverlap As Short
+        Dim v1 As Short '0
         Dim v2 As Short '100
         Dim v3 As Short '100
         Dim Overlap As Double
@@ -45,12 +50,13 @@
         If ifwait = True Then p.WaitForExit()
         Return 0
     End Function
-    Public Function StartUTAUWavTool(wavtool As WavTool, args As WavToolArgs, ifsee As Boolean, ifwait As Boolean)
+    Public Function StartUTAUWavTool(wavtool As WavTool, args As WavToolArgs, ifsee As Boolean, ifwait As Boolean, WorkingDir As String)
         Dim p As New Process
         Dim info As New ProcessStartInfo
         info.FileName = wavtool.Filename
         info.Arguments = """" & args.File1 & """ """ & args.File2 & """ 0 " & args.Length & "@" & args.BPM & "+" & args.Pre & " " & args.p1 & " " & args.p2Overlap & " " & args.p3nextOverlap & " 0 " & args.v2 & " " & args.v3 & " 0 " & args.Overlap
         If ifsee = False Then info.WindowStyle = ProcessWindowStyle.Hidden
+        info.WorkingDirectory = WorkingDir
         p.StartInfo = info
         p.Start()
         If ifwait = True Then p.WaitForExit()

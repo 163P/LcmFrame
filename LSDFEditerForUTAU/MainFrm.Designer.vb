@@ -50,6 +50,8 @@ Partial Class MainFrm
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.SFD = New System.Windows.Forms.SaveFileDialog()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -304,11 +306,30 @@ Partial Class MainFrm
         '
         Me.SFD.Filter = "LCM序列描述文件|*.lsdf"
         '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(59, 276)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(228, 20)
+        Me.ComboBox1.TabIndex = 24
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 279)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 12)
+        Me.Label1.TabIndex = 25
+        Me.Label1.Text = "Label1"
+        '
         'MainFrm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(839, 278)
+        Me.ClientSize = New System.Drawing.Size(839, 324)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.TrackBar5)
@@ -376,4 +397,6 @@ Partial Class MainFrm
     Friend WithEvents OFD As OpenFileDialog
     Friend WithEvents Button3 As Button
     Friend WithEvents SFD As SaveFileDialog
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label1 As Label
 End Class
