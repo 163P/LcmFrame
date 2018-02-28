@@ -1,4 +1,5 @@
-﻿Imports LSDF_Converter.ToLSDF
+﻿
+Imports FileOperationLibrary.USTClass
 Module MainMod
 
     Sub Main()
@@ -7,7 +8,7 @@ Module MainMod
         If a.Extension = ".ust" Or a.Extension = ".UST" Then
             Dim w As New LSDF_Converter.ToLSDF
 
-            w.GotoLSDF(w.ReadAUst(Replace(Command, """", "")), System.IO.Path.GetFullPath(a.FullName) & "_LCM.LSDF")
+            w.GotoLSDF(ReadAUst(Replace(Command, """", "")), System.IO.Path.GetFullPath(a.FullName) & "_LCM.LSDF")
 
         ElseIf a.Extension = ".lsdf" Or a.Extension = ".LSDF" Then
             Dim w As New LSDF_Converter.ToUST

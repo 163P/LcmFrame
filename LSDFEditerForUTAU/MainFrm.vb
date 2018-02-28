@@ -1,14 +1,19 @@
-﻿Public Class MainFrm
-    Dim k As New XMLReadClass
-    Dim ust As XMLReadClass.USTFileSystem
+﻿Imports LCMTypeLibrary.UTAUDriverClass
+Imports LCMTypeLibrary.StructureClass
+Imports LCMTypeLibrary.OSPClass
+Imports FileOperationLibrary.LSDFClass
+Imports FileOperationLibrary.OSPClass
+Public Class MainFrm
+    Dim k As New XMLClass
+    Dim ust As LSDFFileSystem
     Dim utau As New UTAUDriver
-    Dim NowArg2 As UTAUDriver.ResampleArgs
-    Dim NowArg1 As UTAUDriver.ResampleArgs
-    Dim WavToolArgs1 As UTAUDriver.WavToolArgs
-    Dim WavToolArgs2 As UTAUDriver.WavToolArgs
-    Dim OTO1 As XMLReadClass.OTO
-    Dim OTO2 As XMLReadClass.OTO
-    Dim MainArgs As UTAUDriver.MainArgs
+    Dim NowArg2 As ResampleArgs
+    Dim NowArg1 As ResampleArgs
+    Dim WavToolArgs1 As WavToolArgs
+    Dim WavToolArgs2 As WavToolArgs
+    Dim OTO1 As Marks
+    Dim OTO2 As Marks
+    Dim MainArgs As MainArgs
     Dim bat As New batClass
     Dim doc As New Xml.XmlDocument
     Private Sub TextBox8_LostFocus(sender As Object, e As EventArgs) Handles TextBox8.LostFocus
@@ -52,11 +57,11 @@
 
     Private Sub MainFrm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '初始化主参数
-        MainArgs.SingerDir = "D:\LCM-Baibai\"
-        MainArgs.TempDir = "d:\"
+        MainArgs.SingerDir = "D:\LCM_Lime\"
+        MainArgs.TempDir = "d:\temp"
         '初始化LSDF文件
         OFD.ShowDialog()
-        ust = k.ReadXml(OFD.FileName)
+        ust = ReadXml(OFD.FileName)
 
         For i = 0 To ust.Section.Count - 1
             ListBox1.Items.Add(ust.Section(i).Lyric)
@@ -67,11 +72,11 @@
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
-        TextBox7.Text = Mid(ust.Section(ListBox1.SelectedIndex).symbol1, 1, InStr(ust.Section(ListBox1.SelectedIndex).symbol1, "|") - 1)
-        TextBox8.Text = ust.Section(ListBox1.SelectedIndex).symbol2
+        TextBox7.Text = Mid(ust.Section(ListBox1.SelectedIndex).Phoneme1, 1, InStr(ust.Section(ListBox1.SelectedIndex).Phoneme1, "|") - 1)
+        TextBox8.Text = ust.Section(ListBox1.SelectedIndex).Phoneme2
 
         TrackBar1.Maximum = ust.Section(ListBox1.SelectedIndex).Length
-        TrackBar1.Value = Replace(ust.Section(ListBox1.SelectedIndex).symbol1, Mid(ust.Section(ListBox1.SelectedIndex).symbol1, 1, InStr(ust.Section(ListBox1.SelectedIndex).symbol1, "|")), "")
+        TrackBar1.Value = Replace(ust.Section(ListBox1.SelectedIndex).Phoneme1, Mid(ust.Section(ListBox1.SelectedIndex).Phoneme1, 1, InStr(ust.Section(ListBox1.SelectedIndex).Phoneme1, "|")), "")
         Panel1.Width = 580 * (TrackBar1.Value / TrackBar1.Maximum)
         Panel2.Left = 580 * (TrackBar1.Value / TrackBar1.Maximum) + 3
         TextBox1.Text = TrackBar1.Value
@@ -88,12 +93,12 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ust.Section(ListBox1.SelectedIndex).symbol1 = TextBox7.Text & "|" & TrackBar1.Value
+        ust.Section(ListBox1.SelectedIndex).Phoneme1 = TextBox7.Text & "|" & TrackBar1.Value
         ust.Section(ListBox1.SelectedIndex).Mt = TrackBar2.Value
         ust.Section(ListBox1.SelectedIndex).Mo = TrackBar3.Value
         ust.Section(ListBox1.SelectedIndex).MG = TrackBar5.Value
         ust.Section(ListBox1.SelectedIndex).Mc = TrackBar4.Value
-        ust.Section(ListBox1.SelectedIndex).symbol2 = TextBox8.Text
+        ust.Section(ListBox1.SelectedIndex).Phoneme2 = TextBox8.Text
         ust.Section(ListBox1.SelectedIndex).Flags = TextBox6.Text
     End Sub
 
@@ -108,8 +113,8 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        OTO1 = k.ReadALMSection(doc, Replace(TextBox7.Text, " ", "_"))
-        OTO2 = k.ReadALMSection(doc, Replace(TextBox8.Text, " ", "_"))
+        OTO1 = ReadAOSPSection(doc, Replace(TextBox7.Text, " ", "_"))
+        OTO2 = ReadAOSPSection(doc, Replace(TextBox8.Text, " ", "_"))
 
         NowArg1.Length = ((TextBox1.Text / 8 / ust.BPM) * 1000) + OTO1.Preutterance - OTO2.Preutterance + OTO2.Overlap
         If NowArg1.Length Mod 100 > 50 Then

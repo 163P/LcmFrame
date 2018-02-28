@@ -63,7 +63,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionModule.vb" />
     <Compile Include="ToLSDF.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -81,7 +80,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ToUST.vb" />
-    <Compile Include="UstSystem.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -103,6 +101,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileOperationLibrary\FileOperationLibrary.vbproj">
+      <Project>{5ffff9ce-55f9-4284-a20b-1623bf79bab3}</Project>
+      <Name>FileOperationLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IniLib\IniLib.csproj">
       <Project>{ec6ca349-95fe-4c97-8f95-b54da61d2aea}</Project>
       <Name>IniLib</Name>
@@ -111,9 +113,9 @@
       <Project>{e9d15be8-5af0-4fec-8a8d-4f92941e97e8}</Project>
       <Name>LcmDictionary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XMLClass\XMLClass.csproj">
-      <Project>{3c1bf366-885b-4fad-9ccb-409c5b96fd91}</Project>
-      <Name>XMLClass</Name>
+    <ProjectReference Include="..\LCMTypeLibrary\LCMTypeLibrary.vbproj">
+      <Project>{1afb763e-8c9e-4597-8f2f-f65769e8605f}</Project>
+      <Name>LCMTypeLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

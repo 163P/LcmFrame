@@ -83,7 +83,6 @@
       <DependentUpon>MainFrm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -100,7 +99,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="UTAUDriver.vb" />
-    <Compile Include="XMLReadClass.vb" />
+    <Compile Include="XMLClass.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainFrm.resx">
@@ -124,11 +123,22 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="LCM.ico" />
     <Content Include="lcmicon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileOperationLibrary\FileOperationLibrary.vbproj">
+      <Project>{5ffff9ce-55f9-4284-a20b-1623bf79bab3}</Project>
+      <Name>FileOperationLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LCMTypeLibrary\LCMTypeLibrary.vbproj">
+      <Project>{1afb763e-8c9e-4597-8f2f-f65769e8605f}</Project>
+      <Name>LCMTypeLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

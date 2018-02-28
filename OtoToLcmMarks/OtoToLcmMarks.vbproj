@@ -106,6 +106,12 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LCMTypeLibrary\LCMTypeLibrary.vbproj">
+      <Project>{1afb763e-8c9e-4597-8f2f-f65769e8605f}</Project>
+      <Name>LCMTypeLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,5 @@
-﻿Public Class batClass
+﻿Imports LCMTypeLibrary.UTAUDriverClass
+Public Class batClass
 
     Public Sub WriteCommandLine(steam As IO.StreamWriter, command As String, name As String, Value As String)
         steam.WriteLine("@" & command & " " & name & "=" & Value)
@@ -6,7 +7,7 @@
     Public Sub WriteBATLine(steam As IO.StreamWriter, command As String, Value As String)
         steam.WriteLine("@" & command & " " & Value)
     End Sub
-    Public Sub WriteBat(Resampler As UTAUDriver.Resample, Wavtool As UTAUDriver.WavTool, ResamplerArgs1 As UTAUDriver.ResampleArgs, WavToolArgs1 As UTAUDriver.WavToolArgs, ResamplerArgs2 As UTAUDriver.ResampleArgs, WavToolArgs2 As UTAUDriver.WavToolArgs, MainArgs As UTAUDriver.MainArgs, steam As IO.StreamWriter)
+    Public Sub WriteBat(Resampler As Resample, Wavtool As WavTool, ResamplerArgs1 As ResampleArgs, WavToolArgs1 As WavToolArgs, ResamplerArgs2 As ResampleArgs, WavToolArgs2 As WavToolArgs, MainArgs As MainArgs, steam As IO.StreamWriter)
 
         WriteCommandLine(steam, "rem", "project", "New")
         WriteCommandLine(steam, "set", "loadmodule", "")

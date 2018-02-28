@@ -106,6 +106,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileOperationLibrary\FileOperationLibrary.vbproj">
+      <Project>{5ffff9ce-55f9-4284-a20b-1623bf79bab3}</Project>
+      <Name>FileOperationLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LCMTypeLibrary\LCMTypeLibrary.vbproj">
+      <Project>{1afb763e-8c9e-4597-8f2f-f65769e8605f}</Project>
+      <Name>LCMTypeLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LSDF_Converter\LSDF_ConverterClass.vbproj">
       <Project>{cfb54739-f2d9-4b48-8ef7-d7fa4a03b9cd}</Project>
       <Name>LSDF_ConverterClass</Name>

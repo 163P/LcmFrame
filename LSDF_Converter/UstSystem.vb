@@ -1,4 +1,0 @@
-﻿Module UstSystem
-
-
-End Module

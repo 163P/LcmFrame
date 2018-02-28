@@ -1,42 +1,5 @@
-﻿Public Class MainClass
-    Dim VowelA As String() = {"R", "a", "o", "e", "i", "u", "v"}
-    Dim VowelB As String() = {"ang", "ong", "ing", "eng", "an", "ai", "ui", "ao", "ou", "iu", "ie", "ve", "er", "en", "in", "un", "vn", "ei"}
-    Dim VowelC As String() = {"iao", "ian", "iang", "uai", "uan", "uang", "van", "iong", "ia", "ua", "uo"}
-
-    ''' <summary>
-    ''' VowelEndingA
-    ''' </summary>
-    Dim VE_l As String() = {"ai", "ei", "ui"}
-    Dim VE_au As String() = {"ao", "ou", "iu"}
-    Dim VE_e_at As String() = {"ie", "ve"}
-    Dim VE_n As String() = {"an", "en", "in", "un", "vn"}
-    Dim VE_ng As String() = {"ang", "eng", "ing", "ong"}
-    Dim VE_iz As String() = {"zi", "ci", "si"}
-    Dim VE_ir As String() = {"zhi", "chi", "shi"}
-    Dim VE_r As String() = {"er"}
-
-
-    Dim VS_a As String() = {"ai", "an", "a"}
-    Dim VS_ao As String() = {"ao", "ang"}
-    Dim VS_o As String() = {"ou", "ong"}
-    Dim VS_e As String() = {"er", "e"}
-    Dim VS_eu As String() = {"eng", "en"}
-    Dim VS_i As String() = {"ing", "in", "ie", "iao", "ian", "iang", "ia", "iong", "i"}
-    Dim VS_u As String() = {"uai", "uang", "uan", "un", "ui", "ua", "uo", "u"}
-    Dim VS_v As String() = {"vn", "van", "v"}
-    Dim VS_el As String() = {"ei"}
-
-    Dim SyllablesWhole1 As String() = {"zhi", "chi", "shi"} '整体音节1，以ir结尾
-    Dim SyllablesWhole2 As String() = {"zi", "ci", "si"} '整体音节2，以iz结尾
-    Dim SyllablesWhole3 As String() = {"er"} '整体音节3，以r结尾
-    Dim SyllablesWhole4 As String() = {"R"} '整体音节4，R
-    Dim VowelDigit1 As String() = {"a", "o", "e", "i", "u", "v"} '一位韵母
-    Dim VowelDigit2 As String() = {"an", "ai", "ui", "ao", "ou", "iu", "ie", "ve", "er", "en", "in", "un", "vn", "ei"， "ia", "ua", "uo"}
-    '二位韵母
-    Dim VowelDigit3 As String() = {"iao", "ian", "uai", "uan", "ang", "ong", "ing", "eng", "van"}  '三位韵母
-
-
-
+﻿Imports LCMTypeLibrary.ConstClass
+Public Class MainClass
 
     ' Public Length As Short
     Structure LCMSymbol
@@ -51,110 +14,66 @@
         ''' </summary>
         Dim LycNow As String
     End Structure
-    Enum VowelType
-        VowelA
-        VowelB
-        VowelC
-        Unknown
-    End Enum
-    Enum VEType
-        a
-        o
-        e
-        i
-        u
-        v
-        iz
-        ir
-        l
-        au
-        e_at
-        n
-        ng
-        r
-        Unknown
-    End Enum
-    Structure Vowel
-        Dim Type As VowelType
-        Dim Vowel As String
-    End Structure
-    Structure VowelEnding
-        Dim Type As VEType
-        Dim VowelEnding As String
-    End Structure
-
-    'Public Function GetSymbol(LycSt As String, LycNow As String) As LCMSymbol '废弃
-    '    If LycNow = "R" Then
-    '        GetSymbol.Symbol1 = "R"
-    '        GetSymbol.Symbol2 = ""
-    '        '单韵母时将第二记号留空
-    '    ElseIf GetVowelType(LycNow).Type = VowelType.VowelA And GetCon(LycNow) = "" Then
-    '        GetSymbol.Symbol1 = GetVEType(LycSt) & " " & GetCon(LycNow) & " " & GetVowelStart(LycNow)
-    '        GetSymbol.Symbol2 = ""
-    '    ElseIf GetVowelType(LycNow).Vowel = "ian" Then
-    '        GetSymbol.Symbol1 = GetVEType(LycSt) & " " & GetCon(LycNow) & "ian"
-    '        GetSymbol.Symbol2 = ""
-    '    ElseIf GetCon(LycNow) = "" Then
-    '        GetSymbol.Symbol1 = GetVEType(LycSt) & " " & GetVowelStart(LycNow)
-    '        GetSymbol.Symbol2 = "_" & GetVowelType(LycNow).Vowel
-    '    ElseIf LycSt = "zi" Or LycSt = "ci" Or LycSt = "si" Then
-    '        GetSymbol.Symbol1 = "iz " & GetCon(LycNow) & "_" & GetVowelStart(LycNow)
-    '        GetSymbol.Symbol2 = "_" & GetVowelType(LycNow).Vowel
-    '    ElseIf LycSt = "zhi" Or LycSt = "chi" Or LycSt = "shi" Then
-    '        GetSymbol.Symbol1 = "ir " & GetCon(LycNow) & "_" & GetVowelStart(LycNow)
-    '        GetSymbol.Symbol2 = "_" & GetVowelType(LycNow).Vowel
-    '    Else
-
-    '        GetSymbol.Symbol1 = GetVEType(LycSt) & " " & GetCon(LycNow) & "_" & GetVowelStart(LycNow)
-    '        GetSymbol.Symbol2 = "_" & GetVowelType(LycNow).Vowel
-    '    End If
-
-
-
-
-
-
-    '    With GetSymbol
-    '        .LycNow = LycNow
-    '        .LycSt = LycSt
-    '    End With
-    'End Function '废弃
-    Public Function GetCon(Lyc As String) As String
-        GetCon = Replace(Lyc, GetVowel(Lyc), "")
+    Public Function GetSymbol2(Lyc As String) As String
+        If Lyc = "zi" Then
+            Return "iz"
+        ElseIf Lyc = "ci" Then
+            Return "iz"
+        ElseIf Lyc = "si" Then
+            Return "iz"
+        ElseIf Lyc = "zhi" Then
+            Return "ir"
+        ElseIf Lyc = "chi" Then
+            Return "ir"
+        ElseIf Lyc = "shi" Then
+            Return "ir"
+        Else
+            Return GetVowel(Lyc)
+        End If
     End Function
-    'Public Function GetVowelType(Lyc As String) As Vowel
+    Public Function GetStart(Lyc As String) As String
+        If Lyc = "zi" Then
+            Return "i"
+        ElseIf Lyc = "ci" Then
+            Return "i"
+        ElseIf Lyc = "si" Then
+            Return "i"
+        ElseIf Lyc = "zhi" Then
+            Return "i"
+        ElseIf Lyc = "chi" Then
+            Return "i"
+        ElseIf Lyc = "shi" Then
+            Return "i"
+        ElseIf GetVowel(Lyc) = "eng" Then
+            Return "eu"
+        ElseIf GetVowel(Lyc) = "ao" Then
+            Return "au"
+        ElseIf GetVowel(Lyc) = "ei" Then
+            Return "el"
 
+        Else
+            Return Left(GetVowel(Lyc), 1)
+        End If
+    End Function
 
-    '    For i = 0 To VowelC.Length - 1
-    '        If InStr(Lyc, VowelC(i)) <> 0 Then
-    '            GetVowelType.Type = VowelType.VowelC
-    '            GetVowelType.Vowel = VowelC(i)
-    '            Exit Function
-    '        End If
-    '    Next
+    Public Function GetCon(Lyc As String) As String
+        If Lyc = "zi" Then
+            Return "z"
+        ElseIf Lyc = "ci" Then
+            Return "c"
+        ElseIf Lyc = "si" Then
+            Return "s"
+        ElseIf Lyc = "zhi" Then
+            Return "zh"
+        ElseIf Lyc = "chi" Then
+            Return "ch"
+        ElseIf Lyc = "shi" Then
+            Return "sh"
+        Else
+            Return Replace(Lyc, GetVowel(Lyc), "")
+        End If
+    End Function
 
-
-    '    For i = 0 To VowelB.Length - 1
-    '        If InStr(Lyc, VowelB(i)) <> 0 Then
-    '            GetVowelType.Type = VowelType.VowelB
-    '            GetVowelType.Vowel = VowelB(i)
-    '            Exit Function
-
-    '         End If
-    '    Next
-
-    '    For i = 0 To VowelA.Length - 1
-    '        If InStr(Lyc, VowelA(i)) <> 0 Then
-    '            GetVowelType.Type = VowelType.VowelA
-    '            GetVowelType.Vowel = VowelA(i)
-    '            Exit Function
-
-    '        End If
-    '    Next
-
-    '    GetVowelType.Type = VowelType.Unknown
-    '    GetVowelType.Vowel = "a"
-    'End Function
     ''' <summary>
     ''' 获得韵尾
     ''' </summary>
@@ -164,102 +83,42 @@
 
         GetVEType = "a"
 
-        Select Case Not 0
-            Case Compare(Lyc, VE_l, 50, "l")
-                GetVEType = Compare(Lyc, VE_l, 50, "l")
-            Case Compare(Lyc, VE_au, 50, "au")
-                GetVEType = Compare(Lyc, VE_au, 50, "au")
-            Case Compare(Lyc, VE_ng, 50, "ng")
-                GetVEType = Compare(Lyc, VE_ng, 50, "ng")
-            Case Compare(Lyc, VE_n, 50, "n")
-                GetVEType = Compare(Lyc, VE_n, 50, "n")
-            Case Compare(Lyc, VE_e_at, 50, "e@")
-                GetVEType = Compare(Lyc, VE_e_at, 50, "e@")
-            Case Compare(Lyc, VE_ir, 50, "ir")
-                GetVEType = Compare(Lyc, VE_ir, 50, "ir")
-            Case Compare(Lyc, VE_iz, 50, "iz")
-                GetVEType = Compare(Lyc, VE_iz, 50, "iz")
-            Case Compare(Lyc, VE_r, 50, "r")
-                GetVEType = Compare(Lyc, VE_r, 50, "r")
-            Case Compare(Lyc, VowelA, 50)
-                GetVEType = Compare(Lyc, VowelA, 50)
-        End Select
+        If Compare(Lyc, VE_l, 50, "l") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_l, 50, "l")
+        ElseIf Compare(Lyc, VE_au, 50, "au") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_au, 50, "au")
+        ElseIf Compare(Lyc, VE_ng, 50, "ng") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_ng, 50, "ng")
+        ElseIf Compare(Lyc, VE_n, 50, "n") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_n, 50, "n")
+        ElseIf Compare(Lyc, VE_e_at, 50, "ea") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_e_at, 50, "ea")
+        ElseIf Compare(Lyc, VE_ir, 50, "ir") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_ir, 50, "ir")
+        ElseIf Compare(Lyc, VE_iz, 50, "iz") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_iz, 50, "iz")
+        ElseIf Compare(Lyc, VE_r, 50, "r") <> Nothing Then
+            GetVEType = Compare(Lyc, VE_r, 50, "r")
+        ElseIf Compare(Lyc, VowelA, 50) <> Nothing <> Nothing Then
+            GetVEType = Compare(Lyc, VowelA, 50)
+        End If
 
     End Function
-    'Public Function GetVowelStart(Lyc As String) As String
-    '    For i = 0 To VS_e.Length - 1
-    '        If InStr(Lyc, VS_e(i)) <> 0 And InStr(Lyc, "en") = 0 Then
-    '            GetVowelStart = "e"
-    '            Exit Function
-    '        Else
-    '            Exit For
-    '        End If
-    '    Next
-    '    For i = 0 To VS_a.Length - 1
-    '        If InStr(Lyc, VS_a(i)) <> 0 And InStr(Lyc, "ia") = 0 Then
-    '            GetVowelStart = "a"
-    '            Exit Function
-    '        End If
-    '    Next
-    '    For i = 0 To VS_u.Length - 1
-    '        If InStr(Lyc, VS_u(i)) <> 0 Then
-    '            If InStr(Lyc, "iu") <> 0 Then
-    '                GetVowelStart = "i"
-    '                Exit Function
-    '            End If
-    '            GetVowelStart = "u"
-    '            Exit Function
-    '        End If
-    '    Next
-
-    '    For i = 0 To VS_v.Length - 1
-    '        If InStr(Lyc, VS_v(i)) <> 0 Then
-    '            GetVowelStart = "v"
-    '            Exit Function
-    '        End If
-    '    Next
-    '    For i = 0 To VS_i.Length - 1
-    '        If InStr(Lyc, VS_i(i)) <> 0 Then
-    '            GetVowelStart = "i"
-    '            Exit Function
-    '        End If
-    '    Next
-    '    For i = 0 To VS_ao.Length - 1
-    '        If InStr(Lyc, VS_ao(i)) <> 0 Then
-    '            GetVowelStart = "ao"
-    '            Exit Function
-    '        End If
-    '    Next
-
-
-
-    '    For i = 0 To VS_el.Length - 1
-    '        If InStr(Lyc, VS_el(i)) <> 0 Then
-    '            GetVowelStart = "el"
-    '            Exit Function
-    '        End If
-    '    Next
-
-    '    For i = 0 To VS_eu.Length - 1
-    '        If InStr(Lyc, VS_eu(i)) <> 0 Then
-    '            GetVowelStart = "eu"
-    '            Exit Function
-    '        End If
-    '    Next
-
-
-
-    '    For i = 0 To VS_o.Length - 1
-    '        If InStr(Lyc, VS_o(i)) <> 0 Then
-    '            GetVowelStart = "o"
-    '            Exit Function
-    '        End If
-    '    Next
-
-
-
-    '    GetVowelStart = "a"
-    'End Function
+    Public Function ReplaceV(Str As String) As String
+        ReplaceV = Replace(Str, "qu", "qv")
+        ReplaceV = Replace(ReplaceV, "ju", "jv")
+        ReplaceV = Replace(ReplaceV, "xu", "xv")
+        ReplaceV = Replace(ReplaceV, "ue", "ve")
+        ReplaceV = Replace(ReplaceV, "yu", "yv")
+        ReplaceV = Replace(ReplaceV, "yuan", "yvan")
+        ReplaceV = Replace(ReplaceV, "yun", "yvn")
+        ReplaceV = Replace(ReplaceV, "juan", "jvan")
+        ReplaceV = Replace(ReplaceV, "quan", "qvan")
+        ReplaceV = Replace(ReplaceV, "xuan", "xvan")
+        ReplaceV = Replace(ReplaceV, "qun", "qvn")
+        ReplaceV = Replace(ReplaceV, "xun", "xvn")
+        ReplaceV = Replace(ReplaceV, "jun", "jvn")
+    End Function
     ''' <summary>
     ''' 获取发音标记。第一个音符前需加R。
     ''' </summary>
@@ -268,14 +127,26 @@
     ''' <returns></returns>
     Public Function GetSymbol(LycSt As String, LycNow As String) As LCMSymbol
 
+        LycSt = ReplaceV(LycSt)
+        LycNow = ReplaceV(LycNow)
+
         Dim VowelST = GetVowel(LycSt)
         Dim VowelNow = GetVowel(LycNow)
-        If VowelST = 0 Or VowelNow = 0 Then Throw (New InvalidValueException("Lyc值无效。"))
+        If VowelST = Nothing Or VowelNow = Nothing Then Throw (New InvalidValueException("Lyc值无效。"))
         Dim VET_ST = GetVEType(VowelST)
 
-        GetSymbol.Symbol1 = VET_ST & " " & GetCon(LycSt) & "_" & Left(VowelNow, 1)
-        GetSymbol.Symbol2 = "_" & VowelNow
+        If GetCon(LycNow) = "" Then
+            GetSymbol.Symbol1 = VET_ST & " " & GetStart(LycNow)
+        Else
+            GetSymbol.Symbol1 = VET_ST & " " & GetCon(LycNow) & "_" & GetStart(LycNow)
+        End If
 
+
+        GetSymbol.Symbol2 = "_" & GetSymbol2(LycNow)
+
+
+        Return Fix(New LCMSymbol With {.Symbol1 = GetSymbol.Symbol1,
+            .Symbol2 = GetSymbol.Symbol2})
     End Function
     ''' <summary>
     ''' 获得韵母部（包括介母）
@@ -284,22 +155,23 @@
     ''' <returns>默认返回0</returns>
     Public Function GetVowel(str As String) As String
         GetVowel = 0
-        Select Case Not Nothing
-            Case Compare(str, SyllablesWhole1, 50)
-                GetVowel = Compare(str, SyllablesWhole1, 50)
-            Case Compare(str, SyllablesWhole2, 50)
-                GetVowel = Compare(str, SyllablesWhole2, 50)
-            Case Compare(str, SyllablesWhole3, 50)
-                GetVowel = Compare(str, SyllablesWhole3, 50)
-            Case Compare(str, SyllablesWhole4, 50)
-                GetVowel = Compare(str, SyllablesWhole4, 50)
-            Case Compare(str, VowelDigit3, 3)
-                GetVowel = Compare(str, VowelDigit3, 3)
-            Case Compare(str, VowelDigit2, 2)
-                GetVowel = Compare(str, VowelDigit2, 2)
-            Case Compare(str, VowelDigit1, 1)
-                GetVowel = Compare(str, VowelDigit1, 1)
-        End Select
+        If Compare(str, SyllablesWhole1, 50) <> Nothing Then
+            GetVowel = Compare(str, SyllablesWhole1, 50)
+        ElseIf Compare(str, SyllablesWhole2, 50) <> Nothing Then
+            GetVowel = Compare(str, SyllablesWhole2, 50)
+        ElseIf Compare(str, SyllablesWhole3, 50) <> Nothing Then
+            GetVowel = Compare(str, SyllablesWhole3, 50)
+        ElseIf Compare(str, SyllablesWhole4, 50) <> Nothing Then
+            GetVowel = Compare(str, SyllablesWhole4, 50)
+        ElseIf Compare(str, VowelDigit4, 3) <> Nothing Then
+            GetVowel = Compare(str, VowelDigit4, 4)
+        ElseIf Compare(str, VowelDigit3, 3) <> Nothing Then
+            GetVowel = Compare(str, VowelDigit3, 3)
+        ElseIf Compare(str, VowelDigit2, 3) <> Nothing Then
+            GetVowel = Compare(str, VowelDigit2, 2)
+        ElseIf Compare(str, VowelDigit1, 3) <> Nothing Then
+            GetVowel = Compare(str, VowelDigit1, 1)
+        End If
     End Function
 
     ''' <summary>
@@ -340,4 +212,24 @@
             MyBase.New(message)
         End Sub
     End Class
+
+    Public Function Fix(sy As LCMSymbol) As LCMSymbol
+        Fix = sy
+        If sy.Symbol2 = "_ian" Then
+            Fix.Symbol2 = "Null"
+            Fix.Symbol1 = Replace(sy.Symbol1, "_i", "y_an")
+            'ElseIf sy.Symbol2 = "_ei" Then
+            '    Fix.Symbol1 = Replace(sy.Symbol1, "_e", "_el")
+            '    Fix.Symbol2 = "Null"
+            'ElseIf sy.Symbol2 = "_eng" Then
+            '    Fix.Symbol1 = Replace(sy.Symbol1, "_e", "_eu")
+            '    Fix.Symbol2 = "Null"
+            'ElseIf sy.Symbol2 = "_ao" Then
+            '    Fix.Symbol1 = Replace(sy.Symbol1, "_a", "_au")
+            '    Fix.Symbol2 = "Null"
+            'ElseIf sy.Symbol2 = "_ang" Then
+            '    Fix.Symbol1 = Replace(sy.Symbol1, "_a", "_au")
+            '    Fix.Symbol2 = "Null"
+        End If
+    End Function
 End Class
